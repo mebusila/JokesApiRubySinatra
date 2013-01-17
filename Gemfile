@@ -1,3 +1,6 @@
 source :rubygems
-gem 'sinatra', '1.1.0'
-gem 'thin'
+gem 'sinatra'
+gem 'mongo'
+gem 'haml'
+gem "mongoid", "2.3"
+gem "bson_ext", "1.4"
