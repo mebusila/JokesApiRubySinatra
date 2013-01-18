@@ -13,7 +13,7 @@ class Application < Sinatra::Base
     begin
       @tags = Array(params[:tags])
     rescue
-      @tags = nil
+      @tags = []
     end
   end
 
@@ -29,15 +29,22 @@ class Application < Sinatra::Base
     { :jokes => jokes, :tags=>@tags, :total => count }.to_json
   end
 
+  get '/api/jokes/:id' do |id|
+    joke = Joke.find(id) rescue nil
+    halt(404, 'Not Found') if joke.nil?
+
+    content_type 'application/json'
+    { 'content' => joke }.to_json
+  end
+
   post '/api/jokes' do
-    content = params[:content]
-    if content.nil? or content.empty?
-      halt 400
-    end
+    content = Array(params[:content])
+    halt(400) if content.nil? or !content.any?
+
     j = Joke.new(:content => content, :tags => params[:tags])
-    if j.save
-      halt 200
-    end
-    halt 400
+    halt(400) if !j.save
+
+    response['Location'] = j.url
+    response.status = 201
   end
 end
