@@ -29,6 +29,20 @@ class Application < Sinatra::Base
     { :jokes => jokes, :tags=>@tags, :total => count }.to_json
   end
 
+  get '/api/jokes/random' do
+    content_type :json
+    if @tags.any?
+      count = Joke.where(:tags => @tags).count()
+      offset = rand(0..count-@limit)
+      jokes = Joke.limit(@limit).skip(offset).where(:tags => @tags)
+    else
+      count = Joke.count()
+      offset = rand(0..count-@limit)
+      jokes = Joke.limit(@limit).skip(offset).all()
+    end
+    { :jokes => jokes, :tags=>@tags, :total => count }.to_json
+  end
+
   get '/api/jokes/:id' do |id|
     joke = Joke.find(id) rescue nil
     halt(404, 'Not Found') if joke.nil?
