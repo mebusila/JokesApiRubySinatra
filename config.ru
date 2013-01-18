@@ -3,6 +3,7 @@ require 'sinatra'
 require 'haml'
 require 'mongoid'
 require 'mongo'
+require 'json'
 require "./main.rb"
 
 Dir["./models/**/*.rb"].each { |model| require model }
