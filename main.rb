@@ -13,7 +13,7 @@ class Application < Sinatra::Base
     begin
       @tags = Array(params[:tags])
     rescue
-      @tags = []
+      @tags = nil
     end
   end
 
