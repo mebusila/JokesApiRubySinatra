@@ -11,7 +11,7 @@ class Application < Sinatra::Base
       @offset = 0
     end
     begin
-      @tags = params[:tags]
+      @tags = Array(params[:tags])
     rescue
       @tags = nil
     end
@@ -19,12 +19,14 @@ class Application < Sinatra::Base
 
   get '/api/jokes' do
     content_type :json
-    if(@tags)
-      jokes = Joke.limit(@limit).skip(@offset).all(:tags => @tags)
+    if @tags.any?
+      jokes = Joke.limit(@limit).skip(@offset).where(:tags => @tags)
+      count = Joke.where(:tags => @tags).count()
     else
       jokes = Joke.limit(@limit).skip(@offset).all()
+      count = Joke.count()
     end
-    { :jokes => jokes, :tags=>@tags }.to_json
+    { :jokes => jokes, :tags=>@tags, :total => count }.to_json
   end
 
   post '/api/jokes' do
