@@ -11,7 +11,7 @@ class Application < Sinatra::Base
       @offset = 0
     end
     begin
-      @tags = Array(params[:tags])
+      @tags = params[:tags]
     rescue
       @tags = []
     end
