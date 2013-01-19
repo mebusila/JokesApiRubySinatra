@@ -61,4 +61,8 @@ class Application < Sinatra::Base
     response['Location'] = j.url
     response.status = 201
   end
+
+  get '/' do
+    "<a href='/api/jokes'>Subsemantul Bula, Api</a>"
+  end
 end
