@@ -33,11 +33,11 @@ class Application < Sinatra::Base
     content_type :json
     if @tags.any?
       count = Joke.where(:tags => @tags).count()
-      offset = rand(0..count-@limit)
+      offset = rand(count-@limit)
       jokes = Joke.limit(@limit).skip(offset).where(:tags => @tags)
     else
       count = Joke.count()
-      offset = rand(0..count-@limit)
+      offset = rand(count-@limit)
       jokes = Joke.limit(@limit).skip(offset).all()
     end
     { :jokes => jokes, :tags=>@tags, :total => count, :limit => @limit, :offset => offset }.to_json
