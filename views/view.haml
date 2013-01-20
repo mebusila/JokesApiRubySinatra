@@ -1,0 +1,20 @@
+!!!
+%head
+  %meta{:name => 'viewport', :content=>'width=device-width, initial-scale=1, maximum-scale=1'}
+  %meta{:property => 'og:title', :content =>'Subsemnatul, Bula'}
+  %meta{:property => 'og:type', :content =>'article'}
+  %meta{:property => 'og:url', :content =>"/joke/#{joke._id}"}
+  %title Subsemnatul, Bula
+  %link{:href => "/favicon.ico", :rel => "shortcut icon"}/
+  %script{:src => 'http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js', :type => 'text/javascript', :charset => 'utf-8' }
+  %script{:src => 'http://ajax.microsoft.com/ajax/jquery.templates/beta1/jquery.tmpl.js', :type => 'text/javascript', :charset => 'utf-8' }
+  %script{:src => '/js/main.js', :type => 'text/javascript', :charset => 'utf-8' }
+  %link{:href => 'http://yui.yahooapis.com/2.8.0r4/build/reset/reset-min.css', :rel=>'stylesheet'}
+  %link{:href => '/css/styles.css', :rel => 'stylesheet' }
+  %body
+    #wrapper
+      #jokewrapper
+        %ul.joke{:data => joke._id}
+          %ul.content
+            - joke.content.each do |line|
+              %li #{line}

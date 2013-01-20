@@ -66,7 +66,10 @@ class Application < Sinatra::Base
     haml :index
   end
 
-  get '/joke/:id' do
-    haml :view
+  get '/joke/:id' do |id|
+    joke = Joke.find(id) rescue nil
+    halt(404, 'Not Found') if joke.nil?
+
+    haml :view, :locals => { :joke => joke }
   end
 end
