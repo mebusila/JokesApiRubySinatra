@@ -33,10 +33,10 @@ $(document).ready(function() {
         loadJokes();
     });
     loadJokes();
-    $(window).on('click', '.joke', function () {
+    /*$(window).on('click', '.joke', function () {
         var id = $(this).data('tmplItem').data._id;
         if(id) {
             window.location = '/joke/' +id;
         }
-    });
+    });*/
 });
