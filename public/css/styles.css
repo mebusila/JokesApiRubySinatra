@@ -1,5 +1,28 @@
+div#jokeswrapper {
+    padding: 10px;
+    margin: 10px;
+}
+ul.joke:last-child {
+    border: none;
+}
 ul.joke {
     padding-bottom: 10px;
-    border-bottom: 1px solid black;
+    border-bottom: 1px solid #ccc;
     margin-bottom: 10px;
+    font-family: monospace;
+}
+
+div#showmore {
+    text-align: center;
+    padding: 5px;
+    margin: 5px;
+    border: 1px solid #ccc;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+div#showmore:hover {
+    background-color: #ccc;
+    border-color: #777;
 }

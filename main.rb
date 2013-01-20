@@ -65,4 +65,8 @@ class Application < Sinatra::Base
   get '/' do
     haml :index
   end
+
+  get '/joke/:id' do
+    haml :view
+  end
 end
