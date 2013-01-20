@@ -1,8 +1,9 @@
 function loadJokes() {
+    var ts = Math.round((new Date()).getTime() / 1000);
     $('div#loadmoreajaxloader').show();
     $.ajax({
         dataType: 'json',
-        url: "/api/jokes/random?limit=5",
+        url: "/api/jokes/random?limit=5&timestamp=" + ts,
         beforeSend: function ( xhr ) {
             $('div#loader').show();
             $('div#showmore').hide();
