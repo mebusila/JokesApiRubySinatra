@@ -70,6 +70,10 @@ class Application < Sinatra::Base
     joke = Joke.find(id) rescue nil
     halt(404, 'Not Found') if joke.nil?
 
-    haml :view, :locals => { :joke => joke }
+    content = "";
+    joke.content.each do |line|
+      content+=line
+    end
+    haml :view, :locals => { :joke => joke, :content=>content }
   end
 end
