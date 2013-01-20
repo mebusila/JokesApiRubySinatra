@@ -1,0 +1,22 @@
+!!!
+%head
+  %title Subsemnatul, Bula
+  %link{:href => "/favicon.ico", :rel => "shortcut icon"}/
+  %script{:src => 'http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js', :type => 'text/javascript', :charset => 'utf-8' }
+  %script{:src => 'http://ajax.microsoft.com/ajax/jquery.templates/beta1/jquery.tmpl.js', :type => 'text/javascript', :charset => 'utf-8' }
+  %script{:src => 'js/main.js', :type => 'text/javascript', :charset => 'utf-8' }
+  %link{:href => 'http://yui.yahooapis.com/2.8.0r4/build/reset/reset-min.css', :rel=>'stylesheet'}
+  %link{:href => 'css/styles.css', :rel => 'stylesheet' }
+  %body
+    #wrapper
+      #jokeswrapper
+      #loader{ :style => "display:none;" }
+        %center
+          %img{ :src => 'images/loader.gif'}
+      #showmore Show more
+    %script{:type => 'text/x-jquery-tmpl', :id => 'jokeTmpl'}
+      %ul{:class => 'joke', :data => '${_id}'}
+        %ul.content
+          {{tmpl(content) "#jokeContentTmpl"}}
+    %script{:type => 'text/x-jquery-tmpl', :id => 'jokeContentTmpl'}
+      %li ${}

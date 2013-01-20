@@ -26,7 +26,7 @@ class Application < Sinatra::Base
       jokes = Joke.limit(@limit).skip(@offset).all()
       count = Joke.count()
     end
-    { :jokes => jokes, :tags=>@tags, :total => count }.to_json
+    { :jokes => jokes, :tags=>@tags, :total => count, :limit => @limit, :offset => @offset }.to_json
   end
 
   get '/api/jokes/random' do
@@ -40,7 +40,7 @@ class Application < Sinatra::Base
       offset = rand(0..count-@limit)
       jokes = Joke.limit(@limit).skip(offset).all()
     end
-    { :jokes => jokes, :tags=>@tags, :total => count }.to_json
+    { :jokes => jokes, :tags=>@tags, :total => count, :limit => @limit, :offset => offset }.to_json
   end
 
   get '/api/jokes/:id' do |id|
@@ -63,6 +63,6 @@ class Application < Sinatra::Base
   end
 
   get '/' do
-    "<a href='/api/jokes'>Subsemantul Bula, Api</a>"
+    haml :index
   end
 end
