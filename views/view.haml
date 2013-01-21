@@ -20,10 +20,20 @@
     %script{:src => '/js/ga.js', :type => 'text/javascript', :charset => 'utf-8' }
     %script{:src => '/js/jquery.min.js', :type => 'text/javascript', :charset => 'utf-8' }
     %script{:src => '/js/jquery.tmpl.js', :type => 'text/javascript', :charset => 'utf-8' }
-    %script{:src => '/js/main.js', :type => 'text/javascript', :charset => 'utf-8' }
     %link{:href => '/css/reset-min.css', :rel=>'stylesheet'}
     %link{:href => '/css/styles.css', :rel => 'stylesheet' }
     %body
+      #fb-root
+      :plain
+        <script>
+            (function (d, s, id) {
+                var js, fjs = d.getElementsByTagName(s)[0];
+                if (d.getElementById(id)) return;
+                js = d.createElement(s); js.id = id;
+                js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+                fjs.parentNode.insertBefore(js, fjs);
+            } (document, 'script', 'facebook-jssdk'));
+        </script>
       #header_container.shadow
         #header
           %a{:href => '/'}
@@ -36,3 +46,4 @@
               - joke.content.each do |line|
                 #{line}
                 %br
+          %div.fb-like
