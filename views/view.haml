@@ -34,4 +34,5 @@
           %ul.joke{:data => joke._id}
             %ul.content
               - joke.content.each do |line|
-                %li #{line}
+                #{line}
+                %br
