@@ -72,7 +72,7 @@ class Application < Sinatra::Base
 
     content = "";
     joke.content.each do |line|
-      content+=line + '\r\n'
+      content+=line + '%0D%0A'
     end
     haml :view, :locals => { :joke => joke, :content=>content }
   end
