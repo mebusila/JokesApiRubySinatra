@@ -31,8 +31,9 @@
             %img{ :src => 'images/loader.gif'}
         #showmore Show more
       %script{:type => 'text/x-jquery-tmpl', :id => 'jokeTmpl'}
-        %ul{:class => 'joke', :data => '${_id}'}
-          %ul.content
-            {{tmpl(content) "#jokeContentTmpl"}}
+        %a{:href => '/joke/${_id}'}
+          %ul{:class => 'joke', :data => '${_id}'}
+            %ul.content
+              {{tmpl(content) "#jokeContentTmpl"}}
       %script{:type => 'text/x-jquery-tmpl', :id => 'jokeContentTmpl'}
         %li ${}

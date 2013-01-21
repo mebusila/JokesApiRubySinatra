@@ -1,5 +1,6 @@
 body {
     font-family: monospace;
+    padding-top: 40px;
 }
 #header_container {
     background:#f5f5f5;
@@ -33,7 +34,6 @@ body {
 #container {
     margin:0 auto;
     overflow:auto;
-    padding:40px 0;
 }
 #content{}
 .shadow {
@@ -50,19 +50,25 @@ div#jokeswrapper, div#jokewrapper {
     padding: 10px;
     margin: 10px;
 }
-ul.joke:last-child {
-    border: none;
+div#jokeswrapper a {
+    text-decoration: none;
+    color: #000;
 }
+
+div#jokeswrapper a:hover {
+    color: #ff4b33;
+}
+div#jokeswrapper a:visited {
+    color: #00008b;
+}
+
 ul.joke {
     padding: 15px;
-    border: 1px solid #e3e3e3;
+    border: 1px solid #ddd;
     -webkit-border-radius: 4px;
     -moz-border-radius: 4px;
     border-radius: 4px;
     background-color: #f5f5f5;
-    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
-    -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
-    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
     margin-bottom: 10px;
 }
 
