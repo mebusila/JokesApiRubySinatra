@@ -1,9 +1,9 @@
 function loadJokes() {
-    var ts = Math.round((new Date()).getTime() / 1000);
+    var rnd = Math.floor(Math.random()*Math.round((new Date()).getTime() / 1000));
     $('div#loadmoreajaxloader').show();
     $.ajax({
         dataType: 'json',
-        url: "/api/jokes/random?limit=5&timestamp=" + ts,
+        url: "/api/jokes/random?limit=5&rnd=" + rnd,
         beforeSend: function ( xhr ) {
             $('div#loader').show();
             $('div#showmore').hide();
@@ -33,10 +33,4 @@ $(document).ready(function() {
         loadJokes();
     });
     loadJokes();
-    /*$(window).on('click', '.joke', function () {
-        var id = $(this).data('tmplItem').data._id;
-        if(id) {
-            window.location = '/joke/' +id;
-        }
-    });*/
 });
