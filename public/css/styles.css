@@ -6,8 +6,15 @@ ul.joke:last-child {
     border: none;
 }
 ul.joke {
-    padding-bottom: 10px;
-    border-bottom: 1px solid #ccc;
+    padding: 15px;
+    border: 1px solid #e3e3e3;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    background-color: #f5f5f5;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
+    -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
     margin-bottom: 10px;
     font-family: monospace;
 }
