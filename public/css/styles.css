@@ -15,6 +15,9 @@ body {
     margin: auto;
     width:100%;
 }
+#header a {
+    text-decoration: none;
+}
 #header img {
     float: left;
     width: 24px;
