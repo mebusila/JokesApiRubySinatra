@@ -67,7 +67,7 @@ class Application < Sinatra::Base
     content = Array(params[:content])
     halt(400) if content.nil? or !content.any?
 
-    j = Joke.new(:content => content, :tags => params[:tags])
+    j = Joke.new(:content => content, :tags => params[:tags], :lang => params[:lang])
     halt(400) if !j.save
 
     response['Location'] = j.url
