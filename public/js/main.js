@@ -3,7 +3,7 @@ function loadJokes() {
     $('div#loadmoreajaxloader').show();
     $.ajax({
         dataType: 'json',
-        url: "/api/jokes/random?limit=5&rnd=" + rnd,
+        url: "/api/jokes/random?limit=5&lang=ro&rnd=" + rnd,
         beforeSend: function ( xhr ) {
             $('div#loader').show();
             $('div#showmore').hide();
