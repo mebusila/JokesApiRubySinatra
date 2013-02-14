@@ -15,32 +15,44 @@ class Application < Sinatra::Base
     rescue
       @tags = []
     end
+    begin
+      @lang = params[:lang]
+    rescue
+      @lang = null
+    end
+  end
+
+  def get_count
+    if @tags.any?
+      count = Joke.where(:tags => @tags, :lang => @lang).count()
+    else
+      count = Joke.where(:lang => @lang).count()
+    end
+    halt(404, 'Not Found') if count == 0
+    return count
   end
 
   get '/api/jokes' do
     content_type :json
     if @tags.any?
-      jokes = Joke.limit(@limit).skip(@offset).where(:tags => @tags)
-      count = Joke.where(:tags => @tags).count()
+      jokes = Joke.limit(@limit).skip(@offset).where(:tags => @tags, :lang => @lang)
     else
-      jokes = Joke.limit(@limit).skip(@offset).all()
-      count = Joke.count()
+      jokes = Joke.limit(@limit).skip(@offset).where(:lang => @lang)
     end
-    { :jokes => jokes, :tags=>@tags, :total => count, :limit => @limit, :offset => @offset }.to_json
+    { :jokes => jokes, :tags=>@tags, :total => self.get_count, :limit => @limit, :offset => @offset, :lang => @lang }.to_json
   end
 
   get '/api/jokes/random' do
     content_type :json
+    count = get_count
     if @tags.any?
-      count = Joke.where(:tags => @tags).count()
       offset = rand(count-@limit)
-      jokes = Joke.limit(@limit).skip(offset).where(:tags => @tags)
+      jokes = Joke.limit(@limit).skip(offset).where(:tags => @tags, :lang => @lang)
     else
-      count = Joke.count()
       offset = rand(count-@limit)
-      jokes = Joke.limit(@limit).skip(offset).all()
+      jokes = Joke.limit(@limit).skip(offset).where(:lang => @lang)
     end
-    { :jokes => jokes, :tags=>@tags, :total => count, :limit => @limit, :offset => offset }.to_json
+    { :jokes => jokes, :tags=>@tags, :total => count, :limit => @limit, :offset => offset, :lang => @lang }.to_json
   end
 
   get '/api/jokes/:id' do |id|
